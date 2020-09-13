@@ -26,6 +26,10 @@ export default class BookRequestScreen extends Component{
         }
       }
 
+      goToNotesScreen=()=>{
+        this.props.navigation.navigate('NotesScreen')
+      }
+
     userSignUp = (emailId, password,confirmPassword) =>{
         if(password !== confirmPassword){
             return Alert.alert("password doesn't match\nCheck your password.")
@@ -152,7 +156,8 @@ export default class BookRequestScreen extends Component{
                         Open Passwords
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                 onPress={this.goToNotesScreen}>
                     <Text>
                         Open Notes
                     </Text>
