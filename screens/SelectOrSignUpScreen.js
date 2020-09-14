@@ -11,6 +11,7 @@ import {
     ScrollView} from 'react-native';
 import db from '../config';
 import firebase from 'firebase';
+import MyHeader from '../components/MyHeader';
 
 export default class BookRequestScreen extends Component{
 
@@ -28,6 +29,10 @@ export default class BookRequestScreen extends Component{
 
       goToNotesScreen=()=>{
         this.props.navigation.navigate('NotesScreen')
+      }
+
+      goToPasswordScreen=()=>{
+        this.props.navigation.navigate('PasswordScreen')
       }
 
     userSignUp = (emailId, password,confirmPassword) =>{
@@ -151,7 +156,9 @@ export default class BookRequestScreen extends Component{
           {
             this.showModal()
           }
-                <TouchableOpacity style={styles.button}>
+          <MyHeader title="Select Or Sign Up Screen" navigation ={this.props.navigation}/>
+                <TouchableOpacity style={styles.button}
+                  onPress={this.goToPasswordScreen}>
                     <Text>
                         Open Passwords
                     </Text>

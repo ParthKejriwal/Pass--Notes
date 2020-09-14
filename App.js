@@ -3,13 +3,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SelectOrSignUpScreen from './screens/SelectOrSignUpScreen'
 import NotesScreen from './screens/NotesScreen'
-import PasswordsScreen from './screens/PasswordScreen'
+import PasswordScreen from './screens/PasswordScreen'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SelectOrSignUpScreen />
       <AppContainer />
       <StatusBar style="auto" />
     </View>
@@ -17,9 +16,10 @@ export default function App() {
 }
 
 var AppNavigator = createSwitchNavigator({
-  NotesScreen:NotesScreen,
-  PasswordsScreen:PasswordsScreen
+  SelectOrSignUpScreen:SelectOrSignUpScreen,
+  NotesScreen:NotesScreen,PasswordScreen:PasswordScreen
 })
+
 
 const AppContainer = createAppContainer(AppNavigator)
 
