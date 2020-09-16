@@ -28,7 +28,7 @@ export default class BookRequestScreen extends Component{
       }
 
       goToNotesScreen=()=>{
-        this.props.navigation.navigate('NotesScreen')
+        this.props.navigation.navigate('ViewForNotesScreen')
       }
 
       goToPasswordScreen=()=>{
@@ -79,6 +79,7 @@ export default class BookRequestScreen extends Component{
                 >Registration</Text>
               <TextInput
                 style={styles.formTextInput}
+                placeholder ={"First Name"}
                 label ={"First Name"}
                 maxLength ={8}
                 onChangeText={(text)=>{
@@ -153,10 +154,10 @@ export default class BookRequestScreen extends Component{
     render(){
         return(
             <View style={styles.container}>
+              <MyHeader title="Select Or Sign Up Screen" navigation ={this.props.navigation}/>
           {
             this.showModal()
           }
-          <MyHeader title="Select Or Sign Up Screen" navigation ={this.props.navigation}/>
                 <TouchableOpacity style={styles.button}
                   onPress={this.goToPasswordScreen}>
                     <Text>
