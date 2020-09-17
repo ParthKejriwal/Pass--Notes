@@ -14,7 +14,7 @@ import db from '../config';
 import firebase from 'firebase';
 import MyHeader from '../components/MyHeader';
 import { ListItem } from 'react-native-elements'
-import styles from './CommonStylesheet'
+import styles from '../components/CommonStylesheet'
 
 export default class PasswordScreen extends Component{
     constructor(){

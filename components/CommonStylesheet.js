@@ -113,7 +113,65 @@ const styles = StyleSheet.create({
      color:'#ffff',
      fontWeight:'200',
      fontSize:20
-   }
+   },
+   header: {
+    height: 60,
+    backgroundColor: 'orange',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+},
+contentContainer: {
+    backgroundColor: 'white',
+},
+item: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    alignItems: 'center',
+},
+marginLeft: {
+    marginLeft: 5,
+},
+menu: {
+    width: 20,
+    height: 2,
+    backgroundColor: '#111',
+    margin: 2,
+    borderRadius: 3,
+},
+text: {
+    marginVertical: 30,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10,
+},
+
+textInput: {
+    width: '90%',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 30,
+    borderColor: 'gray', 
+    borderBottomWidth: 2,
+    fontSize: 16,
+},
+modalView: {
+    flex: 1, 
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+touchableHighlight: {
+    backgroundColor: 'white', 
+    marginVertical: 10,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+} 
   })
 
   export default styles;

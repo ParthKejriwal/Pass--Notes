@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, FlatList,  TextInput, Modal, TouchableHighlight  } from 'react-native';
+import styles from '../components/CommonStylesheet'
+import firebaseService from "../components/FirebaseService"; 
 
 export default class List extends Component {
     constructor(props) {
         super(props);
-        this.initData = this.DATA
+        this.initData = firebaseService.getAllNotes('Parth');
+        console.log(this.initData)
         this.state = {
             data: this.initData,
       isModalVisible: false,
@@ -12,12 +15,6 @@ export default class List extends Component {
             editedItem: 0, 
         };
     }
-
-    DATA = [ 
-    {id: 1, text: 'Item One', color: 'red'},
-    {id: 2, text: 'Item Two', color: 'blue'},
-    {id: 3, text: 'Item Three', color: 'yellow'}
-    ];
 
     setModalVisible = (bool) => {
         this.setState({ isModalVisible: bool })
@@ -34,7 +31,8 @@ export default class List extends Component {
     handleEditItem = (editedItem) => {
         const newData = this.state.data.map( item => {
             if (item.id === editedItem ) {
-                item.text = this.state.inputText
+                item.title = this.state.inputText
+                console.log(item.id)
                 return item
             }
             return item
@@ -43,7 +41,7 @@ export default class List extends Component {
     }
 
     renderItem = ({item}) => (
-        <TouchableHighlight onPress={() => {this.setModalVisible(true); this.setInputText(item.text), this.setEditedItem(item.id)}}
+        <TouchableHighlight onPress={() => {this.setModalVisible(true); this.setInputText(item.title), this.setEditedItem(item.id)}}
             underlayColor={'#f1f1f1'}> 
             <View style={styles.item} >
                 <View style={styles.marginLeft}>
@@ -51,7 +49,7 @@ export default class List extends Component {
                     <View style={[styles.menu, { backgroundColor: item.color }]}></View>
                     <View style={[styles.menu, { backgroundColor: item.color }]}></View>
                 </View>
-                <Text style={styles.text}> {item.text} </Text>
+                <Text style={styles.text}> {item.title} </Text>
             </View>
         </TouchableHighlight>
     )
@@ -89,64 +87,3 @@ export default class List extends Component {
         )
     }
 };
-
-const styles = StyleSheet.create({
-    header: {
-        height: 60,
-        backgroundColor: 'orange',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    headerText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'white',
-    },
-    contentContainer: {
-        backgroundColor: 'white',
-    },
-    item: {
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: 'grey',
-        alignItems: 'center',
-    },
-    marginLeft: {
-        marginLeft: 5,
-    },
-    menu: {
-        width: 20,
-        height: 2,
-        backgroundColor: '#111',
-        margin: 2,
-        borderRadius: 3,
-    },
-    text: {
-        marginVertical: 30,
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginLeft: 10,
-    },
-
-    textInput: {
-        width: '90%',
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 30,
-        borderColor: 'gray', 
-        borderBottomWidth: 2,
-        fontSize: 16,
-    },
-    modalView: {
-        flex: 1, 
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    touchableHighlight: {
-        backgroundColor: 'white', 
-        marginVertical: 10,
-        alignSelf: 'stretch',
-        alignItems: 'center',
-    } 
-})
