@@ -19,7 +19,7 @@ export default function App() {
 
 var AppNavigator = createSwitchNavigator({
     SelectOrSignUpScreen: SelectOrSignUpScreen,
-    NotesScreen: NotesScreen, PasswordScreen: PasswordScreen,ViewForNotesScreen:ViewForNotesScreen
+    NotesScreen: NotesScreen, PasswordScreen: PasswordScreen
 })
 
 

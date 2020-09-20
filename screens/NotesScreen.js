@@ -14,6 +14,7 @@ import db from '../config';
 import firebase from 'firebase';
 import MyHeader from '../components/MyHeader';
 import styles from '../components/CommonStylesheet'
+import EdiText from 'react-editext'
 
 export default class NotesScreen extends Component{
     constructor(){
@@ -99,7 +100,9 @@ export default class NotesScreen extends Component{
       this.notesRef();
     }
 
-    
+    onSave = val => {
+      console.log('Edited Value -> ', val)
+    }
 
     /*keyExtractor = (item, index) => index.toString()
 
@@ -195,9 +198,11 @@ showModal = ()=>{
               data={this.state.allNotes}
               renderItem={({item})=>(
                 <View style={{borderBottomWidth: 2}}>
-                  <TouchableOpacity style={styles.button}
-                    onPress={this.goToTestNotesScreen}>
-                      <Text style={{fontSize:37}}>{"Title: " + item.title}</Text></TouchableOpacity>
+                  <EdiText
+                  onSave={this.onSave}
+                    type="text"
+                    value={ item.title}>
+                    </EdiText>
                   <Text style={{fontSize:27}}>{"List: " + item.list}</Text>
                 </View>
               )}

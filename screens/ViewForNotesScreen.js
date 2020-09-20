@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/*import React, {Component} from 'react';
 import {FlatList, Modal, Text, TextInput, TouchableHighlight, View,  AsyncStorage} from 'react-native';
 import styles from '../components/CommonStylesheet'
 import firebaseService from "../components/FirebaseService";
@@ -106,4 +106,4 @@ export default class List extends Component {
             </View>
         )
     }
-};
+};*/
