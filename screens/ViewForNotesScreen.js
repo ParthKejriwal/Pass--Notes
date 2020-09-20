@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {FlatList, Modal, Text, TextInput, TouchableHighlight, View} from 'react-native';
+import {FlatList, Modal, Text, TextInput, TouchableHighlight, View,  AsyncStorage} from 'react-native';
 import styles from '../components/CommonStylesheet'
 import firebaseService from "../components/FirebaseService";
+import db from '../config'
 
 export default class List extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class List extends Component {
             isModalVisible: false,
             inputText: '',
             editedItem: 0,
+            docId:''
         };
     }
 
