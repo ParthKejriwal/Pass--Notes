@@ -15,6 +15,7 @@ import firebase from 'firebase';
 import MyHeader from '../components/MyHeader';
 import styles from '../components/CommonStylesheet'
 import EdiText from 'react-editext'
+import firebaseService from "../components/FirebaseService";
 
 export default class NotesScreen extends Component{
     constructor(){
@@ -54,15 +55,12 @@ export default class NotesScreen extends Component{
 
     static navigationOptions = { header: null };
 
-
-    getAllNotes =()=>{
-      this.notesRef = db.collection("Notes")
-      .onSnapshot((snapshot)=>{
-        var allNotes = snapshot.docs.map((doc) => doc.data())
-        this.setState({
-          allNotes : allNotes
-        });
-      })
+    getAllNotes = () => {
+        firebaseService.getAllNotesWithId((allNotes) => {
+            this.setState({
+                allNotes: allNotes
+            });
+        })
     }
 
     setDataToAsyncStore = async () => {
@@ -102,6 +100,17 @@ export default class NotesScreen extends Component{
 
     onSave = val => {
       console.log('Edited Value -> ', val)
+    }
+
+    saveWithId = (id, list) => {
+        return (title) => {
+            console.log('Edited Value -> ' + title + ', id -> ' + id + ', list -> ' + list)
+            console.log('Type of -> '+ typeof id )
+            firebaseService.updateNote(id, {
+                list: list,
+                title: title
+            });
+        }
     }
 
     /*keyExtractor = (item, index) => index.toString()
@@ -199,7 +208,7 @@ showModal = ()=>{
               renderItem={({item})=>(
                 <View style={{borderBottomWidth: 2}}>
                   <EdiText
-                  onSave={this.onSave}
+                  onSave={this.saveWithId(item._id, item.list)}
                     type="text"
                     value={ item.title}>
                     </EdiText>
