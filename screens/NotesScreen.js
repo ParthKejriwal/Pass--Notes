@@ -113,6 +113,14 @@ export default class NotesScreen extends Component{
         }
     }
 
+    deleteWithId = (id) => {
+        return () => {
+            firebaseService.deleteNote(id);
+        }
+    }
+
+
+
     /*keyExtractor = (item, index) => index.toString()
 
     renderItem = ( {item, i} ) =>{
@@ -213,6 +221,12 @@ showModal = ()=>{
                     value={ item.title}>
                     </EdiText>
                   <Text style={{fontSize:27}}>{"List: " + item.list}</Text>
+                    <TouchableOpacity style={styles.button}
+                                      onPress={this.deleteWithId(item._id)}>
+                        <Text>
+                            Delete
+                        </Text>
+                    </TouchableOpacity>
                 </View>
               )}
               keyExtractor= {(item, index)=> index.toString()}

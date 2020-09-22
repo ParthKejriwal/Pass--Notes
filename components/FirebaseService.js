@@ -36,6 +36,13 @@ const firebaseService = {
     },
     updatePassword: (id, password) => {
         db.collection('Passwords').doc(id).set(password);
+    },
+    deleteNote: (id) => {
+        db.collection("Notes").doc(id).delete().then(function () {
+            console.log("Note successfully deleted!");
+        }).catch(function (error) {
+            console.error("Error removing Note: ", error);
+        });
     }
 }
 
