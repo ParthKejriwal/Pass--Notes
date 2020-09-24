@@ -17,9 +17,14 @@ export default class TestNotesScreen extends Component {
         return (
             <View>
                 <Text>
-                    This is the test notes screen
+                   id is  {this.props.navigation.state.params._id}
                 </Text>
-                
+                <Text>
+                    title is  {this.props.navigation.state.params.title}
+                </Text>
+                <Text>
+                    list is  {this.props.navigation.state.params.list}
+                </Text>
             </View>
         )
     }
