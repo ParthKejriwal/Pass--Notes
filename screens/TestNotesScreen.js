@@ -1,20 +1,26 @@
-import React, { Component } from 'react'
-
+import React,{Component}from 'react';
+import {
+    View,
+    Text,
+    TouchableOpacity
+} from 'react-native';
+import db from '../config';
+import firebase from 'firebase';
+import MyHeader from '../components/MyHeader';
+import styles from '../components/CommonStylesheet'
 import EdiText from 'react-editext'
+import firebaseService from "../components/FirebaseService";
 
 export default class TestNotesScreen extends Component {
-  onSave = val => {
-    console.log('Edited Value -> ', val)
-  }
-  render () {
-    return (
-      <div className="container">
-        <EdiText
-          type="text"
-          value='What is real? How do you define real?'
-          onSave={this.onSave}
-        />
-      </div>
-    )
-  }
+
+    render() {
+        return (
+            <View>
+                <Text>
+                    This is the test notes screen
+                </Text>
+                
+            </View>
+        )
+    }
 }

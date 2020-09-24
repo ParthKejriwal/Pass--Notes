@@ -39,8 +39,8 @@ export default class NotesScreen extends Component{
       return Math.random().toString(36).substring(7);
     }
 
-    goToTestNotesScreen = () => {
-        this.props.navigation.navigate('ViewForNotesScreen')
+    goToTestNotesScreen = (itemId) => {
+        this.props.navigation.navigate('TestNotesScreen')
     }
 
     createNotesCollection=()=>{
@@ -51,6 +51,10 @@ export default class NotesScreen extends Component{
         userId:"Parth",
         id:randomId
       })
+      this.setState({
+        id: randomId
+    });
+    console.log(this.state.id)
     }
 
     static navigationOptions = { header: null };
@@ -95,7 +99,7 @@ export default class NotesScreen extends Component{
     }
  
     componentWillUnmount(){
-      this.notesRef();
+      
     }
 
     onSave = val => {
@@ -108,7 +112,9 @@ export default class NotesScreen extends Component{
             console.log('Type of -> '+ typeof id )
             firebaseService.updateNote(id, {
                 list: list,
-                title: title
+                title: title,
+                id:this.state.id,
+                userId:"Parth"
             });
         }
     }
@@ -221,6 +227,12 @@ showModal = ()=>{
                     value={ item.title}>
                     </EdiText>
                   <Text style={{fontSize:27}}>{"List: " + item.list}</Text>
+                  <TouchableOpacity style={styles.button}
+                                      onPress={this.goToTestNotesScreen(item._id)}>
+                        <Text>
+                            View List
+                        </Text>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.button}
                                       onPress={this.deleteWithId(item._id)}>
                         <Text>
