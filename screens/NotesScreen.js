@@ -39,9 +39,7 @@ export default class NotesScreen extends Component{
       return Math.random().toString(36).substring(7);
     }
 
-    goToTestNotesScreen = (itemId) => {
-        this.props.navigation.navigate('TestNotesScreen')
-    }
+    goToTestNotesScreen = (item) => () => this.props.navigation.navigate('TestNotesScreen', item)
 
     createNotesCollection=()=>{
       var randomId = this.createUniqueId()
@@ -228,7 +226,7 @@ showModal = ()=>{
                     </EdiText>
                   <Text style={{fontSize:27}}>{"List: " + item.list}</Text>
                   <TouchableOpacity style={styles.button}
-                                      onPress={this.goToTestNotesScreen(item._id)}>
+                                      onPress={this.goToTestNotesScreen(item)}>
                         <Text>
                             View List
                         </Text>
