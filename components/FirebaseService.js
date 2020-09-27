@@ -31,11 +31,11 @@ const firebaseService = {
     updateNote: (id, note) => {
         db.collection('Notes').doc(id).set(note);
     },
-    savePassword: (password) => {
-        db.collection('Passwords').add(password);
+    savePasswords: (passwords) => {
+        db.collection('Passwords').add(passwords);
     },
-    updatePassword: (id, password) => {
-        db.collection('Passwords').doc(id).set(password);
+    updatePasswords: (id, passwords) => {
+        db.collection('Passwords').doc(id).set(passwords);
     },
     deleteNote: (id) => {
         db.collection("Notes").doc(id).delete().then(function () {
@@ -43,7 +43,15 @@ const firebaseService = {
         }).catch(function (error) {
             console.error("Error removing Note: ", error);
         });
+    },
+    deletePassword: (id) => {
+        db.collection("Passwords").doc(id).delete().then(function () {
+            console.log("Password successfully deleted!");
+        }).catch(function (error) {
+            console.error("Error removing Password: ", error);
+        });
     }
 }
+
 
 export default firebaseService;

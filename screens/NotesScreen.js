@@ -39,7 +39,7 @@ export default class NotesScreen extends Component{
       return Math.random().toString(36).substring(7);
     }
 
-    goToTestNotesScreen = (item) => () => this.props.navigation.navigate('TestNotesScreen', item)
+    goToEditForNotes = (item) => () => this.props.navigation.navigate('EditForNotes', item)
 
     createNotesCollection=()=>{
       var randomId = this.createUniqueId()
@@ -55,7 +55,9 @@ export default class NotesScreen extends Component{
     console.log(this.state.id)
     }
 
-    static navigationOptions = { header: null };
+    static navigationOptions = {
+      title: "NotesScreen",
+    };
 
     getAllNotes = () => {
         firebaseService.getAllNotesWithId((allNotes) => {
@@ -64,33 +66,6 @@ export default class NotesScreen extends Component{
             });
         })
     }
-
-    setDataToAsyncStore = async () => {
-      try {
-          var title = this.state.title;
-          await AsyncStorage.setItem('title', JSON.stringify(title));        
-      } catch (error) {
-          console.log('AsyncStorage set data error in List component', error.message)
-      }
-  } 
-  
-   /* getAllNotes =()=>{
-      this.passwordsRef = db.collection("Notes").where("userId" ,'==', 'Parth')
-      .onSnapshot((snapshot)=>{
-        var allNotes = []
-        snapshot.docs.map((doc) =>{
-          var note = doc.data()
-          note["doc_id"] = doc.id
-          allNotes.push(note)
-          console.log(allNotes)
-        });
-        this.setState({
-          allNotes : allNotes
-        });
-      })
-    }*/
-
-
  
        componentDidMount(){
       this.getAllNotes()
@@ -219,24 +194,13 @@ showModal = ()=>{
               data={this.state.allNotes}
               renderItem={({item})=>(
                 <View style={{borderBottomWidth: 2}}>
-                  <EdiText
-                  onSave={this.saveWithId(item._id, item.list)}
-                    type="text"
-                    value={ item.title}>
-                    </EdiText>
-                  <Text style={{fontSize:27}}>{"List: " + item.list}</Text>
                   <TouchableOpacity style={styles.button}
-                                      onPress={this.goToTestNotesScreen(item)}>
+                                      onPress={this.goToEditForNotes(item)}>
                         <Text>
-                            View List
+                        {item.title}
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}
-                                      onPress={this.deleteWithId(item._id)}>
-                        <Text>
-                            Delete
-                        </Text>
-                    </TouchableOpacity>
+                    
                 </View>
               )}
               keyExtractor= {(item, index)=> index.toString()}

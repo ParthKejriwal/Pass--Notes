@@ -23,8 +23,8 @@ export default class SelectOrSignUpScreen extends Component {
         this.props.navigation.navigate('NotesScreen')
     }
 
-    goToPasswordScreen = () => {
-        this.props.navigation.navigate('PasswordScreen')
+    goToLoginForPasswordsScreen = () => {
+        this.props.navigation.navigate('LoginForPasswordsScreen')
     }
 
     userSignUp = (emailId, password, confirmPassword) => {
@@ -151,7 +151,7 @@ export default class SelectOrSignUpScreen extends Component {
                     this.showModal()
                 }
                 <TouchableOpacity style={styles.button}
-                                  onPress={this.goToPasswordScreen}>
+                                  onPress={this.goToLoginForPasswordsScreen}>
                     <Text>
                         Open Passwords
                     </Text>

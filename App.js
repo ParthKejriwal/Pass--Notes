@@ -5,8 +5,9 @@ import SelectOrSignUpScreen from './screens/SelectOrSignUpScreen'
 import NotesScreen from './screens/NotesScreen'
 import PasswordScreen from './screens/PasswordScreen'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
-import ViewForNotesScreen from './screens/ViewForNotesScreen'
-import TestNotesScreen from './screens/TestNotesScreen';
+import EditForNotes from './screens/EditForNotes';
+import EditForPasswords from './screens/EditForPasswords';
+import LoginForPasswordsScreen from './screens/LoginForPasswordsScreen.js'
 
 export default function App() {
     return (
@@ -19,7 +20,11 @@ export default function App() {
 
 var AppNavigator = createSwitchNavigator({
     SelectOrSignUpScreen: SelectOrSignUpScreen,
-    NotesScreen: NotesScreen, PasswordScreen: PasswordScreen,TestNotesScreen:TestNotesScreen
+    NotesScreen: NotesScreen,
+    LoginForPasswordsScreen:LoginForPasswordsScreen,
+    PasswordScreen: PasswordScreen,
+    EditForPasswords:EditForPasswords,
+    EditForNotes:EditForNotes
 })
 
 
