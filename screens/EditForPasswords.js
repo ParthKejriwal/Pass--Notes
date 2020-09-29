@@ -7,7 +7,8 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     TextInput,
-    BackHandler 
+    Button,
+    SwipeableFlatlist
 } from 'react-native';
 import db from '../config';
 import firebase from 'firebase';
@@ -15,24 +16,32 @@ import MyHeader from '../components/MyHeader';
 import styles from '../components/CommonStylesheet'
 import EdiText from 'react-editext'
 import firebaseService from "../components/FirebaseService";
+import Swipeable from 'react-native-swipeable-row';
 
-export default class EditForPasswords extends Component {
+
+export default class EditForNotes extends Component {
 
     constructor(){
         super()
         this.state={
             isButtonPressed:'false',
             isModalVisible:'false',
+            isDeletePressed:'false'
         }
     }
 
-    saveWithId = (id, password,username) => {
+    goToNotesScreen=()=>{
+        this.props.navigation.navigate('NotesScreen')
+    }
+  
+
+    saveWithId = (id, password) => {
         return (website) => {
-            console.log('Edited Value -> ' + website + ', id -> ' + id + ', password -> ' + password + ', username ->' + username)
+            console.log('Edited Value -> ' + website + ', id -> ' + id + ', password -> ' + password)
             console.log('Type of -> '+ typeof id )
-            firebaseService.updatePasswords(id, {
-                website: website,
+            firebaseService.updateNote(id, {
                 password: password,
+                website: website,
                 id:this.props.navigation.state.params._id,
                 userId:"Parth"
             });
@@ -52,9 +61,10 @@ export default class EditForPasswords extends Component {
         if (this.state.isButtonPressed == true) {
             return (
                 <View>
+             <Button title="Go back" onPress={() => this.props.navigation.goBack(null)} />
                        <EdiText
                         onSave={this.saveWithId(this.props.navigation.state.params._id,
-                            this.props.navigation.state.params.website)}
+                            this.props.navigation.state.params.password)}
                         type="text"
                         value={this.props.navigation.state.params.website}>
                         </EdiText>
@@ -63,12 +73,6 @@ export default class EditForPasswords extends Component {
                             this.props.navigation.state.params.password)}
                         type="text"
                         value={this.props.navigation.state.params.password}>
-                        </EdiText>
-                        <EdiText
-                        onSave={this.saveWithId(this.props.navigation.state.params._id,
-                            this.props.navigation.state.params.username)}
-                        type="text"
-                        value={this.props.navigation.state.params.username}>
                         </EdiText>
                         <TouchableOpacity style={styles.button}
                            onPress={()=>this.setState({"isButtonPressed":true})}>
@@ -81,14 +85,12 @@ export default class EditForPasswords extends Component {
         } else {
             return (
                 <View>
-                       <Text>
+              <Button title="Go back" onPress={() => this.props.navigation.goBack(null)} />
+                        <Text>
                            {this.props.navigation.state.params.website}
                         </Text>
                         <Text>
                            {this.props.navigation.state.params.password}
-                        </Text>
-                        <Text>
-                           {this.props.navigation.state.params.username}
                         </Text>
                         <TouchableOpacity style={styles.button}
                            onPress={()=>this.setState({"isButtonPressed":true})}>

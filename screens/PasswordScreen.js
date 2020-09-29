@@ -100,21 +100,6 @@ export default class PasswordScreen extends Component{
         }
     }
 
-
-
-    /*keyExtractor = (item, index) => index.toString()
-
-    renderItem = ( {item, i} ) =>{
-      console.log(item)
-      return (
-        <ListItem
-          key={i}
-          title={item.title}
-          subtitle={item.list}
-        />
-      )
-    }*/
-
 showModal = ()=>{
     return(
     <Modal

@@ -7,7 +7,8 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     TextInput,
-    BackHandler 
+    Button,
+    SwipeableFlatlist
 } from 'react-native';
 import db from '../config';
 import firebase from 'firebase';
@@ -15,6 +16,8 @@ import MyHeader from '../components/MyHeader';
 import styles from '../components/CommonStylesheet'
 import EdiText from 'react-editext'
 import firebaseService from "../components/FirebaseService";
+import Swipeable from 'react-native-swipeable-row';
+
 
 export default class EditForNotes extends Component {
 
@@ -23,6 +26,7 @@ export default class EditForNotes extends Component {
         this.state={
             isButtonPressed:'false',
             isModalVisible:'false',
+            isDeletePressed:'false'
         }
     }
 
@@ -80,6 +84,7 @@ export default class EditForNotes extends Component {
                     onPress = {()=>{
                         this.saveWithId(this.props.navigation.state.params._id,
                         this.props.navigation.state.params.list)
+                        this.setState({"isModalVisible":false})
                   }}
                 >
                 <Text style={styles.registerButtonText}>Confirm</Text>
@@ -107,15 +112,10 @@ export default class EditForNotes extends Component {
                     {
             this.showModal()
               }
-              <TouchableOpacity style={styles.button}
-                           onPress={()=>this.goToNotesScreen}>
-                           <Text>
-                               Back
-                           </Text>
-                       </TouchableOpacity>
+             <Button title="Go back" onPress={() => this.props.navigation.goBack(null)} />
                        <EdiText
                         onSave={this.saveWithId(this.props.navigation.state.params._id,
-                            this.props.navigation.state.params.title)}
+                            this.props.navigation.state.params.list)}
                         type="text"
                         value={this.props.navigation.state.params.title}>
                         </EdiText>
@@ -139,7 +139,8 @@ export default class EditForNotes extends Component {
                     {
             this.showModal()
               } 
-                       <Text>
+              <Button title="Go back" onPress={() => this.props.navigation.goBack(null)} />
+                        <Text>
                            {this.props.navigation.state.params.title}
                         </Text>
                         <Text>

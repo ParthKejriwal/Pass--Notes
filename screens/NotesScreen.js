@@ -70,12 +70,8 @@ export default class NotesScreen extends Component{
        componentDidMount(){
       this.getAllNotes()
     }
- 
-    componentWillUnmount(){
-      
-    }
 
-    onSave = val => {
+    /*onSave = val => {
       console.log('Edited Value -> ', val)
     }
 
@@ -90,28 +86,13 @@ export default class NotesScreen extends Component{
                 userId:"Parth"
             });
         }
-    }
+    }*/
 
     deleteWithId = (id) => {
         return () => {
             firebaseService.deleteNote(id);
         }
     }
-
-
-
-    /*keyExtractor = (item, index) => index.toString()
-
-    renderItem = ( {item, i} ) =>{
-      console.log(item)
-      return (
-        <ListItem
-          key={i}
-          title={item.title}
-          subtitle={item.list}
-        />
-      )
-    }*/
 
 showModal = ()=>{
     return(
