@@ -19,6 +19,18 @@ export default class SelectOrSignUpScreen extends Component {
         }
     }
 
+    userLogin = (emailId, password)=>{
+        firebase.auth().signInWithEmailAndPassword(emailId, password)
+        .then(()=>{
+          this.props.navigation.navigate('NotesScreen')
+        })
+        .catch((error)=> {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          return Alert.alert(errorMessage)
+        })
+      }
+
     goToNotesScreen = () => {
         this.props.navigation.navigate('NotesScreen')
     }

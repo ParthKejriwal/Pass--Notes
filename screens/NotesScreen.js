@@ -21,7 +21,7 @@ export default class NotesScreen extends Component{
     constructor(){
       super();
       this.state={
-       // userId : firebase.auth().currentUser.email,
+      // userId : firebase.auth().currentUser.email,
         allNotes : [],
         emailId:'',
         password:'',
@@ -70,23 +70,6 @@ export default class NotesScreen extends Component{
        componentDidMount(){
       this.getAllNotes()
     }
-
-    /*onSave = val => {
-      console.log('Edited Value -> ', val)
-    }
-
-    saveWithId = (id, list) => {
-        return (title) => {
-            console.log('Edited Value -> ' + title + ', id -> ' + id + ', list -> ' + list)
-            console.log('Type of -> '+ typeof id )
-            firebaseService.updateNote(id, {
-                list: list,
-                title: title,
-                id:this.state.id,
-                userId:"Parth"
-            });
-        }
-    }*/
 
     deleteWithId = (id) => {
         return () => {
